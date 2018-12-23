@@ -2,15 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './components/App'
-import reducer from './reducers'
-import middleware from './middleware'
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { Provider } from 'react-redux' // << Add
+import { createStore } from 'redux'    // << Add
+import reducer from './reducers'       // << Add
 
-const store = createStore(reducer, middleware)
+const store = createStore(reducer)     // << Add
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store}>             {/* << Add  */}
     <App />
   </Provider>,
   document.getElementById('root')
