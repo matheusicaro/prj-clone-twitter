@@ -1,5 +1,5 @@
 let users = {
-    sarah_edo: {
+    math_icaro: {
       id: "matheusicaro",
       name: "Matheus Icaro",
       avatarURL: "../media/images/profile_matheus.jpg",
