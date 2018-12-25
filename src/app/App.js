@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router'
 import { connect } from 'react-redux'
 import { initialData } from '../actions'
 
-import Home from './pages/Home'
+import Home from './pages/home/Home'
 
 class App extends Component {
 

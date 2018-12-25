@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Dashboard } from '../components'
+import './style.css'
+
+import { Dashboard } from '../../components'
 
 export class Home extends Component {
 
     render() {
-
         const { loading, tweetIds } = this.props;
-        console.log(loading)
+        
         return (
             <div>
                 {(loading === true) ? null : (
