@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { initialData } from '../actions'
 
 import Home from './pages/home/Home'
+import LoadingBar from 'react-redux-loading'
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <LoadingBar/>
         <Switch>
           <Route exact path="/" component={Home} />
           
