@@ -1,12 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './style.css'
+
+import { Tweet } from './'
 
 const Dashboard = props => {
   return (
     <div>
-        <ul>
-            {props.tweetIds.map(id => <li key={id}> {id} </li> )}
-        </ul>
+      <ul className="dashboard-list">
+        {props.tweetIds.map(id =>
+          <li key={id}>
+            <Tweet id={id} />
+          </li>
+        )}
+      </ul>
     </div>
   )
 }
