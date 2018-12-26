@@ -2,13 +2,22 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './style.css'
 
-import { formatTweet } from '../utils/functions'
+import { formatTweet, formatDate } from '../utils/functions'
 import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
 
 export class Tweet extends Component {
 
-    render() {
+    toParent = (event, id) => {
+        event.preventDefault();
+        // TODO: redirecionar para tweet do id especificado.
+    }
 
+    handleLike = (event) => {
+        event.preventDefault();
+        // TODO: salvar estado na store quando clicar em curtir
+    }
+
+    render() {
         const { tweet } = this.props
 
         if (tweet === null)
@@ -20,12 +29,33 @@ export class Tweet extends Component {
 
         return (
             <div className='tweet'>
-                <img
-                    src={avatar}
-                    alt={`Avatar of ${name}`}
-                    className='avatar'
-                />
 
+                <img src={avatar} alt={`Avatar of ${name}`} className='avatar' />
+
+                <div>
+                    <div className='tweet-info'>
+                        <span>{name}</span>
+                        <div>{formatDate(timestamp)}</div>
+                        {parent && (
+                            <button className='replying-to' onClick={(event) => this.toParent(event, parent.id)}>
+                                Repling to @ {parent.author}
+                            </button>
+                        )}
+                        <p>{text}</p>
+                    </div>
+
+                    <div className='tweet-icons'>
+                        <TiArrowBackOutline className='tweet-icon' />
+                        <span>{replies !== 0 && replies}</span>
+                        <button className='heart-button' onClick={this.handleLike}>
+                            { hasLiked === true 
+                                ? <TiHeartFullOutline color='#e0245e' className='tweet-icon'/>
+                                : <TiHeartOutline className='tweet-icon'/>
+                            }
+                        </button>
+                        <span>{likes !== 0 && likes}</span>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -43,7 +73,7 @@ function mapStateToProps({ authedUser, users, tweets }, { id }) {
 
     const tweet = tweets[id]
     const parentTweet = tweet ? tweets[tweet.replyingTo] : null
-  
+
     return {
         authedUser,
         tweet: tweet ? formatTweet(tweet, users[tweet.author], authedUser, parentTweet) : null
