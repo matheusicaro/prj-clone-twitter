@@ -4,6 +4,7 @@ import './style.css'
 
 import { formatTweet, formatDate } from '../utils/functions'
 import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
+import { handleChangeTweets } from '../../actions/tweets'
 
 export class Tweet extends Component {
 
@@ -14,7 +15,13 @@ export class Tweet extends Component {
 
     handleLike = (event) => {
         event.preventDefault();
-        // TODO: salvar estado na store quando clicar em curtir
+        
+        const { dispatch, tweet, authedUser } = this.props;
+        dispatch( handleChangeTweets({
+            id: tweet.id,
+            hasLiked: tweet.hasLiked,
+            authedUser
+        }))
     }
 
     render() {

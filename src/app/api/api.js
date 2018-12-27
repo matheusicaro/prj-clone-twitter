@@ -15,7 +15,7 @@ import {
     }))
   }
   
-  export function saveLikeToggle (info) {
+  export function saveLikeChange(info) {
     return _saveLikeToggle(info)
   }
   

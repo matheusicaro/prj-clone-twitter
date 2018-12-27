@@ -4,7 +4,8 @@ import { Route, Switch } from 'react-router'
 import { connect } from 'react-redux'
 import { initialData } from '../actions'
 
-import Home from './pages/home/Home'
+import { Home, NewTweet } from './pages'
+
 import LoadingBar from 'react-redux-loading'
 
 class App extends Component {
@@ -19,6 +20,8 @@ class App extends Component {
         <LoadingBar/>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/new-tweet" component={NewTweet} />
+
           
           {/* 
           TODO...: Quando não achar nenhuma rota acima *
