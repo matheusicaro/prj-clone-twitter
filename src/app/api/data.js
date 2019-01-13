@@ -253,6 +253,7 @@ function formatTweet ({ author, text, replyingTo = null }) {
 }
 
 export function _saveTweet ({ text, author, replyingTo }) {
+
   return new Promise((res, rej) => {
     const formattedTweet = formatTweet({
       text,
@@ -264,6 +265,12 @@ export function _saveTweet ({ text, author, replyingTo }) {
       tweets = {
         ...tweets,
         [formattedTweet.id]: formattedTweet,
+      }
+      
+      if( typeof author === "object") {
+        let _author = "";
+        Object.keys(author).map(object => _author += author[object]);
+        author = _author;
       }
 
       users = {
